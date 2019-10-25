@@ -11,8 +11,6 @@ var credits = new PIXI.Container();
 var texture = PIXI.Texture.from("assets/temp_background.png");
 var menu_background = new PIXI.Sprite(texture);
 
-loadMenu();
-
 function loadMenu()
 {
     // menu screen
@@ -46,7 +44,8 @@ function loadMenu()
 }
 
 
-function onPlayButtonDown() {
+function onPlayButtonDown() 
+{
     // load game background
     var game_board = new PIXI.Sprite(PIXI.Texture.from("assets/temp_background.png"));
     game_board.width = renderer.screen.width;
@@ -84,7 +83,7 @@ function onCredButtonDown() {
     credits_board.height = renderer.screen.height;
     stage.addChild(credits_board);
     let people_text = new PIXI.Text(
-        'Chloe Bates\nKyle Watson\nSam',
+        'Chloe Bates\nKyle Watson\nSamantha Muellner',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
@@ -139,5 +138,6 @@ function animate()
     renderer.render(stage);
 }
 
+loadMenu();
 document.addEventListener('keydown', keydownEventHandler);
 animate();
