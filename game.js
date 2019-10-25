@@ -9,6 +9,12 @@ PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 var openingScene = new PIXI.Container();
 openingScene.visible = true;
 
+var howToScene = new PIXI.Container();
+howToScene.visible = false;
+
+var playScene = new PIXI.Container();
+playScene.visible = false;
+
 var creditsScene = new PIXI.Container();
 creditsScene.visible = false;
 
@@ -81,41 +87,15 @@ function loadMenu()
 
 function onHowTo()
 {
-
+    // howToScene.visible = true;
+    // openingScene.visible = false;
 }
 
 
 function onPlayButtonDown() 
 {
-    // // load game background
-    // var game_board = new PIXI.Sprite(PIXI.Texture.from("assets/temp_background.png"));
-    // game_board.width = renderer.screen.width;
-    // game_board.height = renderer.screen.height;
-    // stage.addChild(game_board);
-
-    // // add menu button
-    // var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
-    // quit.position.x = 20;
-    // quit.position.y = 520;
-    // quit.buttonMode = true;
-    // quit.interactive = true;
-    // quit.buttonMode = true;
-    // quit
-    //     .on('pointerdown', loadMenu);
-
-    // stage.addChild(quit);
-
-    // let people_text = new PIXI.Text(
-    //     'How to play: use W, A, S, D keys to move the hand to gather the leaves. ',
-    //     {fontFamily : "\"Courier New\", Courier, monospace",
-    //         fontSize: 15,
-    //         fontWeight: "bold",
-    //         fill : ["#fa0"],
-    //         align : 'center'});
-
-    // people_text.x = 10;
-    // people_text.y = 10;
-    // stage.addChild(people_text);
+    // playScene.visible = true;
+    // openingScene.visible = false;
 }
 
 function onCredButtonDown() {
