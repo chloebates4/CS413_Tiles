@@ -12,6 +12,7 @@ var texture = PIXI.Texture.from("assets/temp_background.png");
 var menu_background = new PIXI.Sprite(texture);
 
 loadMenu();
+
 function loadMenu()
 {
     // menu screen
