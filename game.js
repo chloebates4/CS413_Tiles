@@ -87,22 +87,59 @@ function loadMenu()
 
 function onHowTo()
 {
-    // howToScene.visible = true;
-    // openingScene.visible = false;
+    howToScene.visible = true;
+    openingScene.visible = false;
+
+ 
+    var instructions = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
+    instructions.width = renderer.screen.width;
+    instructions.height = renderer.screen.height;
+    howToScene.addChild(instructions);
+
+    // add menu title
+    var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
+    quit.position.x = 450;
+    quit.position.y = 20;
+    quit.anchor.x = .5;
+    quit.anchor.y = .5;
+    quit.buttonMode = true;
+    quit.interactive = true;
+    quit.buttonMode = true;
+    quit.on('pointerdown', loadMenu);
+
+    howToScene.addChild(quit);
 }
 
 
 function onPlayButtonDown() 
 {
-    // playScene.visible = true;
-    // openingScene.visible = false;
+    playScene.visible = true;
+    openingScene.visible = false;
+
+    var play = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
+    play.width = renderer.screen.width;
+    play.height = renderer.screen.height;
+    playScene.addChild(play);
+
+    // add menu title
+    var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
+    quit.position.x = 450;
+    quit.position.y = 20;
+    quit.anchor.x = .5;
+    quit.anchor.y = .5;
+    quit.buttonMode = true;
+    quit.interactive = true;
+    quit.buttonMode = true;
+    quit.on('pointerdown', loadMenu);
+
+    playScene.addChild(quit);
 }
 
 function onCredButtonDown() {
     creditsScene.visible = true;
     openingScene.visible = false;
 
-    var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/temp_background.png"));
+    var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     credits_board.width = renderer.screen.width;
     credits_board.height = renderer.screen.height;
     creditsScene.addChild(credits_board);
@@ -171,7 +208,10 @@ function animate()
     {
         renderer.render(creditsScene);
     }
-    
+    else if(howToScene.visible)
+    {
+        renderer.render(howToScene);
+    }
 }
 
 document.addEventListener('keydown', keydownEventHandler);
