@@ -123,6 +123,20 @@ function onHowTo()
     instructions.height = renderer.screen.height;
     howToScene.addChild(instructions);
 
+    let how_to_text = new PIXI.Text(
+        '\nUse a and d to move your\ncharacter right and left,\nand the space bar to jump',
+        {fontFamily : "\"Courier New\", Courier, monospace",
+            fontSize: 25,
+            fontWeight: "bold",
+            fill : ["#fa0"],
+            align : 'center'});
+
+    how_to_text.x = 250;
+    how_to_text.y = 260;
+    how_to_text.anchor.x = .5;
+    how_to_text.anchor.y = .5;
+    howToScene.addChild(how_to_text);
+
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
     quit.position.x = 450;
@@ -151,6 +165,7 @@ function onPlayButtonDown()
 
     lava = world.getObject("Lava").data;
 
+    //add main character
     var pumpkinHead = new PIXI.Sprite(PIXI.loader.resources["assets/pumpkin_man.png"].texture);
     pumpkinHead.gx = 9;
     pumpkinHead.gy = 5;
@@ -187,7 +202,7 @@ function onCredButtonDown() {
     credits_board.height = renderer.screen.height;
     creditsScene.addChild(credits_board);
     let people_text = new PIXI.Text(
-        'Chloe Bates\nKyle Watson\nSamantha Muellner',
+        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design: Chloe Bates',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
@@ -246,8 +261,6 @@ function move() {
 
 //   if (pumpkinHead.direction == MOVE_LEFT) dx -= 1;
 //   if (pumpkinHead.direction == MOVE_RIGHT) dx += 1;
-//   if (pumpkinHead.direction == MOVE_UP) dy -= 1;  
-//   if (pumpkinHead.direction == MOVE_DOWN) dy += 1;
 
 //   if (lava[(pumpkinHead.gy+dy-1)*12 + (pumpkinHead.gx+dx)] != 0) {
 //     pumpkinHead.moving = false;
@@ -255,7 +268,6 @@ function move() {
 //   }
 
 //   pumpkinHead.gx += dx;
-//   pumpkinHead.gy += dy;
 
 //   pumpkinHead.moving = true;
   
@@ -271,12 +283,9 @@ window.addEventListener("keydown", function (e) {
     // if (e.repeat == true) return;
     
     // pumpkinHead.direction = MOVE_NONE;
-  
-    // if (e.keyCode == 87)
-    //   pumpkinHead.direction = MOVE_UP;
-    // else if (e.keyCode == 83)
-    //   pumpkinHead.direction = MOVE_DOWN;
-    // else if (e.keyCode == 65)
+
+    // //only need to move left and right, and maybe jump
+    // if (e.keyCode == 65)
     //   pumpkinHead.direction = MOVE_LEFT;
     // else if (e.keyCode == 68)
     //   pumpkinHead.direction = MOVE_RIGHT;
