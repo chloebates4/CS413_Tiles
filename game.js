@@ -1,6 +1,18 @@
+var GAME_WIDTH = 500;
+var GAME_HEIGHT = 500;
+var GAME_SCALE = 4;
+
+// Character movement constants:
+var MOVE_LEFT = 1;
+var MOVE_RIGHT = 2;
+var MOVE_UP = 3;
+var MOVE_DOWN = 4;
+var MOVE_NONE = 0;
+var DIM = 16;
+
 var gameport = document.getElementById("gameport");
 
-var renderer = PIXI.autoDetectRenderer({width: 500, height: 500});
+var renderer = PIXI.autoDetectRenderer({width: GAME_WIDTH, height: GAME_HEIGHT});
 gameport.appendChild(renderer.view);
 
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
@@ -8,26 +20,39 @@ PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 // our menu that will offer the player to 'play', see 'instructions', or see 'credits'
 var openingScene = new PIXI.Container();
 openingScene.visible = true;
+openingScene.interactive = true;
 
 var howToScene = new PIXI.Container();
 howToScene.visible = false;
+howToScene.interactive = false;
 
 var playScene = new PIXI.Container();
+playScene.x = GAME_SCALE;
+playScene.y = GAME_SCALE;
 playScene.visible = false;
+playScene.interactive = false;
 
 var creditsScene = new PIXI.Container();
 creditsScene.visible = false;
+creditsScene.interactive = false;
 
 var texture = PIXI.Texture.from("assets/title_screen.png")
 var menu_background = new PIXI.Sprite(texture);
 
+var lava, brick, grass, pumpkinHead;
+
 PIXI.loader
+    .add('assets/test_map.json')
+    .add('assets/tiles.png')
+    .add('assets/pumpkin_man.png')
     .load(loadMenu)
 
 function loadMenu()
 {
     creditsScene.visible = false;
+    creditsScene.interactive = false;
     openingScene.visible = true;
+    openingScene.interactive = true;
 
     menu_background.width = renderer.screen.width;
     menu_background.height = renderer.screen.height;
@@ -88,7 +113,9 @@ function loadMenu()
 function onHowTo()
 {
     howToScene.visible = true;
+    howToScene.interactive = true;
     openingScene.visible = false;
+    openingScene.interactive = false;
 
  
     var instructions = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
@@ -110,16 +137,27 @@ function onHowTo()
     howToScene.addChild(quit);
 }
 
-
 function onPlayButtonDown() 
 {
     playScene.visible = true;
+    playScene.interactive = true;
     openingScene.visible = false;
+    openingScene.interactive = false;
 
-    var play = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
-    play.width = renderer.screen.width;
-    play.height = renderer.screen.height;
-    playScene.addChild(play);
+    createjs.Ticker.setFPS(60);
+    var tu = new TileUtilities(PIXI);
+    world = tu.makeTiledWorld("assets/test_map.json", "assets/tiles.png");
+    playScene.addChild(world);
+
+    lava = world.getObject("Lava").data;
+
+    var pumpkinHead = new PIXI.Sprite(PIXI.loader.resources["assets/pumpkin_man.png"].texture);
+    pumpkinHead.gx = 9;
+    pumpkinHead.gy = 5;
+    pumpkinHead.x = pumpkinHead.gx*DIM;
+    pumpkinHead.y = pumpkinHead.gx*DIM;
+    pumpkinHead.anchor.x = .5;
+    pumpkinHead.anchor.y = 1;
 
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
@@ -132,12 +170,17 @@ function onPlayButtonDown()
     quit.buttonMode = true;
     quit.on('pointerdown', loadMenu);
 
+    pumpkinHead.moving = false;
+    pumpkinHead.direction = MOVE_NONE;
+
     playScene.addChild(quit);
 }
 
 function onCredButtonDown() {
     creditsScene.visible = true;
+    creditsScene.interactive = true;
     openingScene.visible = false;
+    openingScene.interactive = false;
 
     var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     credits_board.width = renderer.screen.width;
@@ -185,21 +228,84 @@ function onCredButtonDown() {
     creditsScene.addChild(quit);
 }
 
-
-
 //Adds sprites to the game
 
+/***************** CODE BETWEEN THESE LINES IS FROM PALMERS *******************/
 
 
+// The move function starts or continues movement
+function move() {
 
-function keydownEventHandler(e)
-{
+//   if (pumpkinHead.direction == MOVE_NONE) {
+//     pumpkinHead.moving = false;
+//     return;
+//   }
+
+//   var dx = 0;
+//   var dy = 0;
+
+//   if (pumpkinHead.direction == MOVE_LEFT) dx -= 1;
+//   if (pumpkinHead.direction == MOVE_RIGHT) dx += 1;
+//   if (pumpkinHead.direction == MOVE_UP) dy -= 1;  
+//   if (pumpkinHead.direction == MOVE_DOWN) dy += 1;
+
+//   if (lava[(pumpkinHead.gy+dy-1)*12 + (pumpkinHead.gx+dx)] != 0) {
+//     pumpkinHead.moving = false;
+//     return;
+//   }
+
+//   pumpkinHead.gx += dx;
+//   pumpkinHead.gy += dy;
+
+//   pumpkinHead.moving = true;
+  
+//   createjs.Tween.get(pumpkinHead).to({x: pumpkinHead.gx*DIM, y: pumpkinHead.gy*DIM}, 250).call(move);
 
 }
+
+// Keydown events start movement
+window.addEventListener("keydown", function (e) {
+    // e.preventDefault();
+    // if (!pumpkinHead) return;
+    // if (pumpkinHead.moving) return;
+    // if (e.repeat == true) return;
+    
+    // pumpkinHead.direction = MOVE_NONE;
+  
+    // if (e.keyCode == 87)
+    //   pumpkinHead.direction = MOVE_UP;
+    // else if (e.keyCode == 83)
+    //   pumpkinHead.direction = MOVE_DOWN;
+    // else if (e.keyCode == 65)
+    //   pumpkinHead.direction = MOVE_LEFT;
+    // else if (e.keyCode == 68)
+    //   pumpkinHead.direction = MOVE_RIGHT;
+  
+    // move();
+});
+
+// Keyup events end movement
+window.addEventListener("keyup", function onKeyUp(e) {
+//   e.preventDefault();
+//   if (!pumpkinHead) return;
+//   pumpkinHead.direction = MOVE_NONE;
+});
+
+function update_camera() {
+//   playScene.x = -pumpkinHead.x*GAME_SCALE + GAME_WIDTH/2 - pumpkinHead.width/2*GAME_SCALE;
+//   playScene.y = -pumpkinHead.y*GAME_SCALE + GAME_HEIGHT/2 + pumpkinHead.height/2*GAME_SCALE;
+//   playScene.x = -Math.max(0, Math.min(world.worldWidth*GAME_SCALE - GAME_WIDTH, -playScene.x));
+//   playScene.y = -Math.max(0, Math.min(world.worldHeight*GAME_SCALE - GAME_HEIGHT, -playScene.y));
+}
+
+/***************** CODE BETWEEN THESE LINES IS FROM PALMERS *******************/
+
+
 
 function animate()
 {
     requestAnimationFrame(animate);
+
     if(openingScene.visible)
     {
         renderer.render(openingScene);
@@ -212,7 +318,11 @@ function animate()
     {
         renderer.render(howToScene);
     }
+    else if(playScene.visible)
+    {
+        renderer.render(playScene);
+        update_camera();
+    }
 }
 
-document.addEventListener('keydown', keydownEventHandler);
 animate();
