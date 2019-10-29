@@ -1,6 +1,6 @@
-var GAME_WIDTH = 500;
+var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
-var GAME_SCALE = 4;
+var GAME_SCALE = 1;
 
 // Character movement constants:
 var MOVE_LEFT = 1;
@@ -27,8 +27,8 @@ howToScene.visible = false;
 howToScene.interactive = false;
 
 var playScene = new PIXI.Container();
-playScene.x = GAME_SCALE;
-playScene.y = GAME_SCALE;
+playScene.scale.x = GAME_SCALE;
+playScene.scale.y = GAME_SCALE;
 playScene.visible = false;
 playScene.interactive = false;
 
@@ -172,8 +172,8 @@ function onPlayButtonDown()
 
     //add main character
     var pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
-    pumpkinHead.position.x = 500;
-    pumpkinHead.position.y = 500;
+    pumpkinHead.position.x = 20;
+    pumpkinHead.position.y = GAME_HEIGHT - 250;
     pumpkinHead.interactive = true;
     playScene.addChild(pumpkinHead);
 
@@ -190,7 +190,7 @@ function onPlayButtonDown()
 
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
-    quit.position.x = 450;
+    quit.position.x = GAME_WIDTH - 50;
     quit.position.y = 20;
     quit.anchor.x = .5;
     quit.anchor.y = .5;
