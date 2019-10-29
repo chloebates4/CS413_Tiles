@@ -65,7 +65,7 @@ function loadMenu()
             fontWeight: "bold",
             fill : ["#fa0"],
             align : 'center'});
-    title_text.x = 250;
+    title_text.x = GAME_WIDTH/2;
     title_text.y = 200;
     title_text.anchor.x = .5;
     title_text.anchor.y = .5;
@@ -73,7 +73,7 @@ function loadMenu()
 
     // add play button
     var playBtn = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Start_Button.png"));
-    playBtn.position.x = 180;
+    playBtn.position.x = 400;
     playBtn.position.y = 350;
     playBtn.anchor.x = .5;
     playBtn.anchor.y = .5;
@@ -86,7 +86,7 @@ function loadMenu()
 
     // add credits button
     var credsBtn = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Credits_Button.png"));
-    credsBtn.position.x = 320;
+    credsBtn.position.x = 600;
     credsBtn.position.y = 350;
     credsBtn.anchor.x = .5;
     credsBtn.anchor.y = .5;
@@ -98,7 +98,7 @@ function loadMenu()
     openingScene.addChild(credsBtn);
 
     var howToBtn = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_How_To_Play.png"));
-    howToBtn.position.x = 250;
+    howToBtn.position.x = GAME_WIDTH/2;
     howToBtn.position.y = 400;
     howToBtn.anchor.x = .5;
     howToBtn.anchor.y = .5;
@@ -131,7 +131,7 @@ function onHowTo()
             fill : ["#fa0"],
             align : 'center'});
 
-    how_to_text.x = 250;
+    how_to_text.x = GAME_WIDTH/2;
     how_to_text.y = 260;
     how_to_text.anchor.x = .5;
     how_to_text.anchor.y = .5;
@@ -139,7 +139,7 @@ function onHowTo()
 
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
-    quit.position.x = 450;
+    quit.position.x = GAME_WIDTH - 50;
     quit.position.y = 20;
     quit.anchor.x = .5;
     quit.anchor.y = .5;
@@ -223,7 +223,7 @@ function onCredButtonDown() {
             fill : ["#fa0"],
             align : 'center'});
 
-    people_text.x = 250;
+    people_text.x = GAME_WIDTH/2;
     people_text.y = 260;
     people_text.anchor.x = .5;
     people_text.anchor.y = .5;
@@ -237,7 +237,7 @@ function onCredButtonDown() {
             fill : ["#fa0"],
             align : 'center'});
 
-    creds_title_text.x = 250;
+    creds_title_text.x = GAME_WIDTH/2;
     creds_title_text.y = 125;
     creds_title_text.anchor.x = .5;
     creds_title_text.anchor.y = .5;
@@ -245,7 +245,7 @@ function onCredButtonDown() {
 
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
-    quit.position.x = 450;
+    quit.position.x = GAME_WIDTH - 50;
     quit.position.y = 20;
     quit.anchor.x = .5;
     quit.anchor.y = .5;
