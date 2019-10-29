@@ -1,3 +1,4 @@
+/**************** Code by Samantha Muellner Below This Parts ***************/ 
 var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
 var GAME_SCALE = 1;
@@ -164,7 +165,8 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     lava = world.getObject("Lava").data;
-*/
+    */
+
     var world = new PIXI.Sprite(PIXI.Texture.from("assets/background.png"));
     world.width = renderer.screen.width;
     world.height = renderer.screen.height;
@@ -210,6 +212,8 @@ function onCredButtonDown() {
     creditsScene.interactive = true;
     openingScene.visible = false;
     openingScene.interactive = false;
+    
+    /**************** Code by Samantha Muellner Above This Parts ***************/ 
 
     var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     credits_board.width = renderer.screen.width;
@@ -237,6 +241,7 @@ function onCredButtonDown() {
             fill : ["#fa0"],
             align : 'center'});
 
+    // Section of Code Below Edited by Samantha Muellner \\
     creds_title_text.x = GAME_WIDTH/2;
     creds_title_text.y = 125;
     creds_title_text.anchor.x = .5;
@@ -257,73 +262,7 @@ function onCredButtonDown() {
     creditsScene.addChild(quit);
 }
 
-//Adds sprites to the game
-
-/***************** CODE BETWEEN THESE LINES IS FROM PALMERS *******************/
-
-
-// The move function starts or continues movement
-function move() {
-
-//   if (pumpkinHead.direction == MOVE_NONE) {
-//     pumpkinHead.moving = false;
-//     return;
-//   }
-
-//   var dx = 0;
-//   var dy = 0;
-
-//   if (pumpkinHead.direction == MOVE_LEFT) dx -= 1;
-//   if (pumpkinHead.direction == MOVE_RIGHT) dx += 1;
-
-//   if (lava[(pumpkinHead.gy+dy-1)*12 + (pumpkinHead.gx+dx)] != 0) {
-//     pumpkinHead.moving = false;
-//     return;
-//   }
-
-//   pumpkinHead.gx += dx;
-
-//   pumpkinHead.moving = true;
-  
-//   createjs.Tween.get(pumpkinHead).to({x: pumpkinHead.gx*DIM, y: pumpkinHead.gy*DIM}, 250).call(move);
-
-}
-
-// Keydown events start movement
-window.addEventListener("keydown", function (e) {
-    // e.preventDefault();
-    // if (!pumpkinHead) return;
-    // if (pumpkinHead.moving) return;
-    // if (e.repeat == true) return;
-    
-    // pumpkinHead.direction = MOVE_NONE;
-
-    // //only need to move left and right, and maybe jump
-    // if (e.keyCode == 65)
-    //   pumpkinHead.direction = MOVE_LEFT;
-    // else if (e.keyCode == 68)
-    //   pumpkinHead.direction = MOVE_RIGHT;
-  
-    // move();
-});
-
-// Keyup events end movement
-window.addEventListener("keyup", function onKeyUp(e) {
-//   e.preventDefault();
-//   if (!pumpkinHead) return;
-//   pumpkinHead.direction = MOVE_NONE;
-});
-
-function update_camera() {
-//   playScene.x = -pumpkinHead.x*GAME_SCALE + GAME_WIDTH/2 - pumpkinHead.width/2*GAME_SCALE;
-//   playScene.y = -pumpkinHead.y*GAME_SCALE + GAME_HEIGHT/2 + pumpkinHead.height/2*GAME_SCALE;
-//   playScene.x = -Math.max(0, Math.min(world.worldWidth*GAME_SCALE - GAME_WIDTH, -playScene.x));
-//   playScene.y = -Math.max(0, Math.min(world.worldHeight*GAME_SCALE - GAME_HEIGHT, -playScene.y));
-}
-
-/***************** CODE BETWEEN THESE LINES IS FROM PALMERS *******************/
-
-
+/**************** Code by Samantha Muellner Below This Parts ***************/ 
 
 function animate()
 {
@@ -349,3 +288,5 @@ function animate()
 }
 
 animate();
+
+/**************** Code by Samantha Muellner Above This Parts ***************/ 
