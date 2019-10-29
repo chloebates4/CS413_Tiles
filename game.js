@@ -151,7 +151,7 @@ function onHowTo()
     howToScene.addChild(quit);
 }
 
-function onPlayButtonDown() 
+function onPlayButtonDown()
 {
     playScene.visible = true;
     playScene.interactive = true;
@@ -171,13 +171,22 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     //add main character
-    var pumpkinHead = new PIXI.Sprite(PIXI.loader.resources["assets/pumpkin_man.png"].texture);
+    var pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
+    pumpkinHead.position.x = 500;
+    pumpkinHead.position.y = 500;
+    pumpkinHead.interactive = true;
+    playScene.addChild(pumpkinHead);
+
+    /*
     pumpkinHead.gx = 9;
+
     pumpkinHead.gy = 5;
     pumpkinHead.x = pumpkinHead.gx*DIM;
     pumpkinHead.y = pumpkinHead.gx*DIM;
     pumpkinHead.anchor.x = .5;
     pumpkinHead.anchor.y = 1;
+
+     */
 
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
