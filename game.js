@@ -40,12 +40,12 @@ creditsScene.interactive = false;
 var texture = PIXI.Texture.from("assets/title_screen.png")
 var menu_background = new PIXI.Sprite(texture);
 
-var lava, brick, grass, pumpkinHead;
+var lava, brick, grass, candyCorn;
 
 PIXI.loader
     .add('assets/test_map.json')
     .add('assets/tiles.png')
-    .add('assets/pumpkin_man.png')
+    .add('assets/candy_corn.png')
     .load(loadMenu);
 
 function loadMenu()
@@ -173,11 +173,11 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     //add main character
-    var pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
-    pumpkinHead.position.x = 20;
-    pumpkinHead.position.y = GAME_HEIGHT - 250;
-    pumpkinHead.interactive = true;
-    playScene.addChild(pumpkinHead);
+    candyCorn = new PIXI.Sprite(PIXI.Texture.from("assets/bigger_candy_corn.png"));
+    candyCorn.position.x = 20;
+    candyCorn.position.y = GAME_HEIGHT - 250;
+    candyCorn.interactive = true;
+    playScene.addChild(candyCorn);
 
     /*
     pumpkinHead.gx = 9;
@@ -201,8 +201,8 @@ function onPlayButtonDown()
     quit.buttonMode = true;
     quit.on('pointerdown', loadMenu);
 
-    pumpkinHead.moving = false;
-    pumpkinHead.direction = MOVE_NONE;
+    candyCorn.moving = false;
+    candyCorn.direction = MOVE_NONE;
 
     playScene.addChild(quit);
 }
@@ -220,7 +220,7 @@ function onCredButtonDown() {
     credits_board.height = renderer.screen.height;
     creditsScene.addChild(credits_board);
     let people_text = new PIXI.Text(
-        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design: Chloe Bates',
+        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design and Coding: Chloe Bates',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
@@ -260,7 +260,30 @@ function onCredButtonDown() {
     quit.on('pointerdown', loadMenu);
 
     creditsScene.addChild(quit);
+    // Section of Code Above Edited by Samantha Muellner \\
 }
+
+function keydownEventHandler(e) {
+
+    if (e.keyCode === 87) { //w key
+        candyCorn.position.y -=10;
+    }
+
+    if (e.keyCode === 83) { //s key
+        candyCorn.position.y +=10;
+    }
+
+    if (e.keyCode === 65) { //a key
+        candyCorn.position.x -=10;
+    }
+
+    if (e.keyCode === 68) { //d key
+        candyCorn.position.x +=10;
+    }
+}
+
+// listen for user moving the hand
+document.addEventListener("keydown", keydownEventHandler);
 
 /**************** Code by Samantha Muellner Below This Parts ***************/ 
 
