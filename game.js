@@ -171,7 +171,7 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     //add main character
-    var pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
+    pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
     pumpkinHead.position.x = 20;
     pumpkinHead.position.y = GAME_HEIGHT - 250;
     pumpkinHead.interactive = true;
@@ -323,7 +323,27 @@ function update_camera() {
 
 /***************** CODE BETWEEN THESE LINES IS FROM PALMERS *******************/
 
+function keydownEventHandler(e) {
 
+    if (e.keyCode === 87) { //w key
+        pumpkinHead.position.y -=10;
+    }
+
+    if (e.keyCode === 83) { //s key
+        pumpkinHead.position.y +=10;
+    }
+
+    if (e.keyCode === 65) { //a key
+        pumpkinHead.position.x -=10;
+    }
+
+    if (e.keyCode === 68) { //d key
+        pumpkinHead.position.x +=10;
+    }
+}
+
+// listen for user moving the hand
+document.addEventListener("keydown", keydownEventHandler);
 
 function animate()
 {
