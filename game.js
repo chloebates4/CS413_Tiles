@@ -45,7 +45,7 @@ PIXI.loader
     .add('assets/test_map.json')
     .add('assets/tiles.png')
     .add('assets/pumpkin_man.png')
-    .load(loadMenu)
+    .load(loadMenu);
 
 function loadMenu()
 {
@@ -158,12 +158,17 @@ function onPlayButtonDown()
     openingScene.visible = false;
     openingScene.interactive = false;
 
-    createjs.Ticker.setFPS(60);
+    /*createjs.Ticker.setFPS(60);
     var tu = new TileUtilities(PIXI);
     world = tu.makeTiledWorld("assets/test_map.json", "assets/tiles.png");
     playScene.addChild(world);
 
     lava = world.getObject("Lava").data;
+*/
+    var world = new PIXI.Sprite(PIXI.Texture.from("assets/background.png"));
+    world.width = renderer.screen.width;
+    world.height = renderer.screen.height;
+    playScene.addChild(world);
 
     //add main character
     var pumpkinHead = new PIXI.Sprite(PIXI.loader.resources["assets/pumpkin_man.png"].texture);
