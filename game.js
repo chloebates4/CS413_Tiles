@@ -1,3 +1,5 @@
+/****** Check Github reppo for a better representation of what member did what ***************/
+
 /**************** Code by Samantha Muellner Below This Parts ***************/
 var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
@@ -11,6 +13,7 @@ var MOVE_DOWN = 4;
 var MOVE_NONE = 0;
 var DIM = 16;
 
+/**************** Code by Chloe Bates ***************/
 var gameport = document.getElementById("gameport");
 
 var renderer = PIXI.autoDetectRenderer({width: GAME_WIDTH, height: GAME_HEIGHT});
@@ -20,6 +23,7 @@ var bump = new Bump(PIXI);
 
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
+/**************** Code by Samantha Muellner ***************/
 // our menu that will offer the player to 'play', see 'instructions', or see 'credits'
 var openingScene = new PIXI.Container();
 openingScene.visible = true;
@@ -112,7 +116,9 @@ function loadMenu()
 
     openingScene.addChild(howToBtn);
 }
+/**************** Code by Chloe Bates and Samantha Muellner Above This Part ***************/
 
+/**************** Code by Samantha Muellner Below This Part ***************/
 function onHowTo()
 {
     howToScene.visible = true;
@@ -154,6 +160,7 @@ function onHowTo()
     howToScene.addChild(quit);
 }
 
+/**************** Code by Samantha Muellner Below This Part ***************/
 function onPlayButtonDown()
 {
     playScene.visible = true;
@@ -169,6 +176,7 @@ function onPlayButtonDown()
     lava = world.getObject("Lava").data;
     */
 
+    /**************** Code by Chloe Bates and Samantha Muellner Below This Part ***************/
     var world = new PIXI.Sprite(PIXI.Texture.from("assets/background.png"));
     world.width = renderer.screen.width;
     world.height = renderer.screen.height;
@@ -195,6 +203,8 @@ function onPlayButtonDown()
     // Scatter candies
     scatterCandies();
 
+    /**************** Code by Samantha Muellner ***************/
+
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
     quit.position.x = GAME_WIDTH - 50;
@@ -217,8 +227,6 @@ function onCredButtonDown() {
     creditsScene.interactive = true;
     openingScene.visible = false;
     openingScene.interactive = false;
-
-    /**************** Code by Samantha Muellner Above This Parts ***************/
 
     var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     credits_board.width = renderer.screen.width;
@@ -268,6 +276,8 @@ function onCredButtonDown() {
     // Section of Code Above Edited by Samantha Muellner \\
 }
 
+/**************** Code by Chloe Bates ***************/
+
 var candy = [
     "assets/candy_red.png", "assets/candy_red.png", "assets/candy_red.png",
     "assets/candy_red.png", "assets/candy_red.png", "assets/candy_blue.png",
@@ -296,6 +306,7 @@ function scatterCandies() {
     }
 }
 
+/**************** Code by Chloe Bates ***************/
 function keydownEventHandler(e) {
 
     if (e.keyCode === 87) { //w key
@@ -318,7 +329,7 @@ function keydownEventHandler(e) {
 // listen for user moving the hand
 document.addEventListener("keydown", keydownEventHandler);
 
-/**************** Code by Samantha Muellner Below This Parts ***************/
+/**************** Code by Samantha Muellner ***************/
 
 
 function animate()
@@ -339,6 +350,7 @@ function animate()
     }
     else if(playScene.visible)
     {
+        /**************** Code by Chloe Bates ***************/
         bump.hit(candyCorn,candySprites, false, true, true,
             function (collision, platform) {
                 playScene.removeChild(platform);
@@ -352,4 +364,3 @@ function animate()
 }
 animate();
 
-/**************** Code by Samantha Muellner Above This Parts ***************/
