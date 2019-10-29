@@ -39,12 +39,12 @@ creditsScene.interactive = false;
 var texture = PIXI.Texture.from("assets/title_screen.png")
 var menu_background = new PIXI.Sprite(texture);
 
-var lava, brick, grass, pumpkinHead;
+var lava, brick, grass, candyCorn;
 
 PIXI.loader
     .add('assets/test_map.json')
     .add('assets/tiles.png')
-    .add('assets/pumpkin_man.png')
+    .add('assets/candy_corn.png')
     .load(loadMenu);
 
 function loadMenu()
@@ -171,11 +171,11 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     //add main character
-    pumpkinHead = new PIXI.Sprite(PIXI.Texture.from("assets/pumpkin_man.png"));
-    pumpkinHead.position.x = 20;
-    pumpkinHead.position.y = GAME_HEIGHT - 250;
-    pumpkinHead.interactive = true;
-    playScene.addChild(pumpkinHead);
+    candyCorn = new PIXI.Sprite(PIXI.Texture.from("assets/candy_corn.png"));
+    candyCorn.position.x = 20;
+    candyCorn.position.y = GAME_HEIGHT - 250;
+    candyCorn.interactive = true;
+    playScene.addChild(candyCorn);
 
     /*
     pumpkinHead.gx = 9;
@@ -199,8 +199,8 @@ function onPlayButtonDown()
     quit.buttonMode = true;
     quit.on('pointerdown', loadMenu);
 
-    pumpkinHead.moving = false;
-    pumpkinHead.direction = MOVE_NONE;
+    candyCorn.moving = false;
+    candyCorn.direction = MOVE_NONE;
 
     playScene.addChild(quit);
 }
@@ -326,19 +326,19 @@ function update_camera() {
 function keydownEventHandler(e) {
 
     if (e.keyCode === 87) { //w key
-        pumpkinHead.position.y -=10;
+        candyCorn.position.y -=10;
     }
 
     if (e.keyCode === 83) { //s key
-        pumpkinHead.position.y +=10;
+        candyCorn.position.y +=10;
     }
 
     if (e.keyCode === 65) { //a key
-        pumpkinHead.position.x -=10;
+        candyCorn.position.x -=10;
     }
 
     if (e.keyCode === 68) { //d key
-        pumpkinHead.position.x +=10;
+        candyCorn.position.x +=10;
     }
 }
 
