@@ -58,6 +58,10 @@ function loadMenu()
     creditsScene.interactive = false;
     openingScene.visible = true;
     openingScene.interactive = true;
+    howToScene.visible = false;
+    howToScene.interactive = false;
+    playScene.visible = false;
+    playScene.interactive = false;
 
     menu_background.width = renderer.screen.width;
     menu_background.height = renderer.screen.height;
