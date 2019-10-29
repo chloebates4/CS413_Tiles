@@ -171,7 +171,7 @@ function onPlayButtonDown()
     playScene.addChild(world);
 
     //add main character
-    candyCorn = new PIXI.Sprite(PIXI.Texture.from("assets/candy_corn.png"));
+    candyCorn = new PIXI.Sprite(PIXI.Texture.from("assets/bigger_candy_corn.png"));
     candyCorn.position.x = 20;
     candyCorn.position.y = GAME_HEIGHT - 250;
     candyCorn.interactive = true;
