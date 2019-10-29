@@ -216,7 +216,7 @@ function onCredButtonDown() {
     credits_board.height = renderer.screen.height;
     creditsScene.addChild(credits_board);
     let people_text = new PIXI.Text(
-        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design: Chloe Bates',
+        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design and Coding: Chloe Bates',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
