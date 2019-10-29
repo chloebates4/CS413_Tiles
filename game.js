@@ -1,19 +1,14 @@
 /****** Check Github reppo for a better representation of what member did what ***************/
 
-/**************** Code by Samantha Muellner Below This Parts ***************/
+/*** Code by Chloe Bates Below ***/
 var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
 var GAME_SCALE = 1;
 
 // Character movement constants:
-var MOVE_LEFT = 1;
-var MOVE_RIGHT = 2;
-var MOVE_UP = 3;
-var MOVE_DOWN = 4;
 var MOVE_NONE = 0;
 var DIM = 16;
 
-/**************** Code by Chloe Bates ***************/
 var gameport = document.getElementById("gameport");
 
 var renderer = PIXI.autoDetectRenderer({width: GAME_WIDTH, height: GAME_HEIGHT});
@@ -22,8 +17,11 @@ gameport.appendChild(renderer.view);
 var bump = new Bump(PIXI);
 
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
+/*** Code by Chloe Bates Above ***/
 
-/**************** Code by Samantha Muellner ***************/
+
+
+/**************** Code by Samantha Muellner Below ***************/
 // our menu that will offer the player to 'play', see 'instructions', or see 'credits'
 var openingScene = new PIXI.Container();
 openingScene.visible = true;
@@ -116,9 +114,7 @@ function loadMenu()
 
     openingScene.addChild(howToBtn);
 }
-/**************** Code by Chloe Bates and Samantha Muellner Above This Part ***************/
 
-/**************** Code by Samantha Muellner Below This Part ***************/
 function onHowTo()
 {
     howToScene.visible = true;
@@ -133,7 +129,7 @@ function onHowTo()
     howToScene.addChild(instructions);
 
     let how_to_text = new PIXI.Text(
-        '\nUse a and d to move your\ncharacter right and left,\nand the space bar to jump',
+        '\nUse a, s, d, and w to move \nyour character and collect the candies around the board',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
@@ -160,7 +156,6 @@ function onHowTo()
     howToScene.addChild(quit);
 }
 
-/**************** Code by Samantha Muellner Below This Part ***************/
 function onPlayButtonDown()
 {
     playScene.visible = true;
@@ -175,6 +170,10 @@ function onPlayButtonDown()
 
     lava = world.getObject("Lava").data;
     */
+
+    /**************** Code by Samantha Muellner Above ***************/
+
+
 
     /**************** Code by Chloe Bates and Samantha Muellner Below This Part ***************/
     var world = new PIXI.Sprite(PIXI.Texture.from("assets/background.png"));
@@ -203,8 +202,6 @@ function onPlayButtonDown()
     // Scatter candies
     scatterCandies();
 
-    /**************** Code by Samantha Muellner ***************/
-
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
     quit.position.x = GAME_WIDTH - 50;
@@ -221,7 +218,12 @@ function onPlayButtonDown()
 
     playScene.addChild(quit);
 }
+/**************** Code by Chloe Bates and Samantha Muellner Above This Part ***************/
 
+
+
+
+/**************** Code by Samantha Muellner Below ***************/
 function onCredButtonDown() {
     creditsScene.visible = true;
     creditsScene.interactive = true;
@@ -233,7 +235,7 @@ function onCredButtonDown() {
     credits_board.height = renderer.screen.height;
     creditsScene.addChild(credits_board);
     let people_text = new PIXI.Text(
-        '\nCoding and Screen Creation: \nKyle Watson\n\n Coding, Screen, and Tile \nCreation: Samantha Muellner\n\nCharacter Design and Coding: Chloe Bates',
+        '\nConcept and Screen Creation: \nKyle Watson\n\n Coding, Screen, Concept, and Tile \nCreation: Samantha Muellner\n\nCharacter Design Concept, and Coding:\n Chloe Bates',
         {fontFamily : "\"Courier New\", Courier, monospace",
             fontSize: 25,
             fontWeight: "bold",
@@ -254,7 +256,6 @@ function onCredButtonDown() {
             fill : ["#fa0"],
             align : 'center'});
 
-    // Section of Code Below Edited by Samantha Muellner \\
     creds_title_text.x = GAME_WIDTH/2;
     creds_title_text.y = 125;
     creds_title_text.anchor.x = .5;
@@ -276,7 +277,13 @@ function onCredButtonDown() {
     // Section of Code Above Edited by Samantha Muellner \\
 }
 
-/**************** Code by Chloe Bates ***************/
+/**************** Code by Samantha Muellner Above ***************/
+
+
+
+
+
+/*** Code by Chloe Bates Below***/
 
 var candy = [
     "assets/candy_red.png", "assets/candy_red.png", "assets/candy_red.png",
@@ -306,7 +313,6 @@ function scatterCandies() {
     }
 }
 
-/**************** Code by Chloe Bates ***************/
 function keydownEventHandler(e) {
 
     if (e.keyCode === 87) { //w key
@@ -329,9 +335,14 @@ function keydownEventHandler(e) {
 // listen for user moving the hand
 document.addEventListener("keydown", keydownEventHandler);
 
-/**************** Code by Samantha Muellner ***************/
+/*** Code by Chloe Bates Above***/
 
 
+
+
+
+
+/**************** Code by Chloe Bates and Samantha Muellner Below This Part ***************/
 function animate()
 {
     requestAnimationFrame(animate);
@@ -350,7 +361,6 @@ function animate()
     }
     else if(playScene.visible)
     {
-        /**************** Code by Chloe Bates ***************/
         bump.hit(candyCorn,candySprites, false, true, true,
             function (collision, platform) {
                 playScene.removeChild(platform);
@@ -363,4 +373,4 @@ function animate()
     }
 }
 animate();
-
+/**************** Code by Chloe Bates and Samantha Muellner Above This Part ***************/
