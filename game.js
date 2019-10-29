@@ -1,5 +1,5 @@
 /****** Check Github reppo for a better representation of what member did what ***************/
-
+/****** Kyle Created all of the JS files as well index page.  ***************/
 /**************** Code by Samantha Muellner Below This Parts ***************/
 var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
@@ -47,7 +47,7 @@ var texture = PIXI.Texture.from("assets/title_screen.png");
 var menu_background = new PIXI.Sprite(texture);
 
 var lava, brick, grass, candyCorn;
-
+/**************** Code by Kyle Watson  ***************/
 PIXI.loader
     .add('assets/test_map.json')
     .add('assets/tiles.png')
@@ -168,6 +168,7 @@ function onPlayButtonDown()
     openingScene.visible = false;
     openingScene.interactive = false;
 
+    /**************** Kyle Watson Spent many of hours trying to figure out tiling. ***************/
     /*createjs.Ticker.setFPS(60);
     var tu = new TileUtilities(PIXI);
     world = tu.makeTiledWorld("assets/test_map.json", "assets/tiles.png");
