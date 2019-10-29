@@ -1,4 +1,4 @@
-/**************** Code by Samantha Muellner Below This Parts ***************/ 
+/**************** Code by Samantha Muellner Below This Parts ***************/
 var GAME_WIDTH = 1000;
 var GAME_HEIGHT = 500;
 var GAME_SCALE = 1;
@@ -15,6 +15,8 @@ var gameport = document.getElementById("gameport");
 
 var renderer = PIXI.autoDetectRenderer({width: GAME_WIDTH, height: GAME_HEIGHT});
 gameport.appendChild(renderer.view);
+
+var bump = new Bump(PIXI);
 
 PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
@@ -37,7 +39,7 @@ var creditsScene = new PIXI.Container();
 creditsScene.visible = false;
 creditsScene.interactive = false;
 
-var texture = PIXI.Texture.from("assets/title_screen.png")
+var texture = PIXI.Texture.from("assets/title_screen.png");
 var menu_background = new PIXI.Sprite(texture);
 
 var lava, brick, grass, candyCorn;
@@ -118,7 +120,7 @@ function onHowTo()
     openingScene.visible = false;
     openingScene.interactive = false;
 
- 
+
     var instructions = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     instructions.width = renderer.screen.width;
     instructions.height = renderer.screen.height;
@@ -190,6 +192,9 @@ function onPlayButtonDown()
 
      */
 
+    // Scatter candies
+    scatterCandies();
+
     // add menu title
     var quit = new PIXI.Sprite(PIXI.Texture.from("assets/Sprite_Quit.png"));
     quit.position.x = GAME_WIDTH - 50;
@@ -212,8 +217,8 @@ function onCredButtonDown() {
     creditsScene.interactive = true;
     openingScene.visible = false;
     openingScene.interactive = false;
-    
-    /**************** Code by Samantha Muellner Above This Parts ***************/ 
+
+    /**************** Code by Samantha Muellner Above This Parts ***************/
 
     var credits_board = new PIXI.Sprite(PIXI.Texture.from("assets/title_screen.png"));
     credits_board.width = renderer.screen.width;
@@ -263,6 +268,34 @@ function onCredButtonDown() {
     // Section of Code Above Edited by Samantha Muellner \\
 }
 
+var candy = [
+    "assets/candy_red.png", "assets/candy_red.png", "assets/candy_red.png",
+    "assets/candy_red.png", "assets/candy_red.png", "assets/candy_blue.png",
+    "assets/candy_blue.png", "assets/candy_blue.png", "assets/candy_blue.png",
+];
+var candySprites = [];
+
+function scatterCandies() {
+
+    for (i = 0; i < candy.length; i++) {
+
+        // assign sprite to a png from the leaves array
+        var single_candy = new PIXI.Sprite(PIXI.Texture.from(candy[i]));
+
+        // "scatter" candy by randomly generating x,y coordinates
+        var xValue = Math.floor(Math.random() * 750) + 1;
+        var yValue = Math.floor(Math.random() * 550) + 1;
+
+        single_candy.width = 70;
+        single_candy.height = 70;
+        single_candy.position.x = xValue;
+        single_candy.position.y = yValue;
+        playScene.addChild(single_candy);
+        candySprites[i] = single_candy;
+
+    }
+}
+
 function keydownEventHandler(e) {
 
     if (e.keyCode === 87) { //w key
@@ -285,7 +318,8 @@ function keydownEventHandler(e) {
 // listen for user moving the hand
 document.addEventListener("keydown", keydownEventHandler);
 
-/**************** Code by Samantha Muellner Below This Parts ***************/ 
+/**************** Code by Samantha Muellner Below This Parts ***************/
+
 
 function animate()
 {
@@ -305,11 +339,17 @@ function animate()
     }
     else if(playScene.visible)
     {
+        bump.hit(candyCorn,candySprites, false, true, true,
+            function (collision, platform) {
+                playScene.removeChild(platform);
+            });
+        candyCorn.speed = 2;
+
         renderer.render(playScene);
+
         update_camera();
     }
 }
-
 animate();
 
-/**************** Code by Samantha Muellner Above This Parts ***************/ 
+/**************** Code by Samantha Muellner Above This Parts ***************/
